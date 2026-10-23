@@ -9,13 +9,16 @@ public class Book {
 
     Book[] books = new Book[20];
 
-    public Book(String title, String checkedOutTo, boolean isCheckedOut, String isbn, int id) {
+    public Book(){
+
+    }
+
+    public Book(int id, String isbn, String title) {
         this.title = title;
-        this.checkedOutTo = checkedOutTo;
-        this.isCheckedOut = isCheckedOut;
         this.isbn = isbn;
         this.id = id;
     }
+
 
     public void CheckOut(String name){
         checkedOutTo = name;
@@ -65,5 +68,13 @@ public class Book {
 
     public void setCheckedOutTo(String checkedOutTo) {
         this.checkedOutTo = checkedOutTo;
+    }
+
+    @Override
+    public String toString() {
+        return "Book\n" + "---------------------\n" +
+                "ISBN: " + isbn + '\'' +
+                "ID: " + id +
+                "Title: '" + title;
     }
 }
