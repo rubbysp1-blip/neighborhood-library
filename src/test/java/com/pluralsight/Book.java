@@ -7,16 +7,16 @@ public class Book {
     private boolean isCheckedOut;
     private String checkedOutTo;
 
-    Book[] books = new Book[20];
 
     public Book(){
 
     }
 
-    public Book(int id, String isbn, String title) {
+    public Book(int id, String isbn, String title, boolean isCheckedOut) {
         this.title = title;
         this.isbn = isbn;
         this.id = id;
+        this.isCheckedOut = isCheckedOut;
     }
 
 
@@ -73,8 +73,8 @@ public class Book {
     @Override
     public String toString() {
         return "Book\n" + "---------------------\n" +
-                "ISBN: " + isbn + '\'' +
-                "ID: " + id +
+                "ISBN: " + isbn + '\n' +
+                "ID: " + id + "\n" +
                 "Title: '" + title;
     }
 }
