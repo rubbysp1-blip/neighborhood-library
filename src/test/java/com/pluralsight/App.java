@@ -37,25 +37,26 @@ public class App {
 ////        System.out.println(books[4].isCheckedOut());
 ////        books[4].CheckIn();
 //        System.out.println(books[4].getCheckedOutTo());
+        int menuDecision = 0;
+        while(menuDecision != 3) {
+            displayMenu(input);
+            menuDecision = input.nextInt();
+            input.nextLine();
 
-
-        displayMenu(input);
-        int menuDecision = input.nextInt();
-        input.nextLine();
-
-        switch (menuDecision){
-            case 1-> showAvailableBooks(books, input);
-            case 2-> checkedOutBooks(books);
-            default -> System.out.println("Invalid Input!");
+            switch (menuDecision) {
+                case 1 -> showAvailableBooks(books, input);
+                case 2 -> checkedOutBooks(books);
+                case 3 -> System.out.println("Goodbye!");
+                default -> System.out.println("Invalid Input!");
+            }
         }
-
     }
 
     public static void displayMenu(Scanner input){
         System.out.print("""
             1. Show Available Books
             2. Show Checked Out Books
-            Exit - closes out of the application
+            3. Exit - closes out of the application
             Enter An Option:\s""");
 
     }
@@ -77,12 +78,12 @@ public class App {
     }
 
     public static void checkedOutBooks(Book[] books){
-        int i = 0;
+        //int i = 0;
         for(Book book : books){
             if(book.isCheckedOut()) {
                 System.out.println(book);
                 System.out.println(book.getCheckedOutTo());
-                i++;
+                //i++;
             }
         }
     }
@@ -105,12 +106,9 @@ public class App {
             for (Book book : books){
                 if(book.getTitle().equalsIgnoreCase(checkOutBook)){
                     book.CheckOut(userName);
-                    System.out.println(book.isCheckedOut());
-                    System.out.println(book.getTitle());
+                    System.out.println("Book " + book.getTitle() + " checked out.");
                 }
             }
-
-
         }
 //        System.out.println(checkOutBook);
     }
