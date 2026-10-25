@@ -10,11 +10,11 @@ public class App {
 
         Book[] books = new Book[20];
 
-        books[0] = new Book(1, "9780000000001","The Complete Book of Classic Cars", true);
+        books[0] = new Book(1, "9780000000001","The Complete Book of Classic Cars", false);
         books[1] = new Book(2, "9780000000002", "The History of the Automobile", false);
         books[2] = new Book(3, "9780000000003", "Sports Cars: A Complete History", false);
         books[3] = new Book(4, "9780000000004", "American Muscle Cars", false);
-        books[4] = new Book(5, "9780000000005", "The Art of Automotive Design", true);
+        books[4] = new Book(5, "9780000000005", "The Art of Automotive Design", false);
         books[5] = new Book(6, "9780000000006", "Classic Ferrari: The Essential Guide", false);
         books[6] = new Book(7, "9780000000007", "Porsche: A History of Excellence", false);
         books[7] = new Book(8, "9780000000008", "The Story of Ford Mustang", false);
@@ -31,13 +31,21 @@ public class App {
         books[18] = new Book(19, "9780000000019", "Vintage Cars of the World", false);
         books[19] = new Book(20, "9780000000020", "Supercars: Speed and Innovation", false);
 
+//        Book book = new Book();
+//        System.out.println(books[4].isCheckedOut());
+//        books[4].CheckOut("Ruby");
+////        System.out.println(books[4].isCheckedOut());
+////        books[4].CheckIn();
+//        System.out.println(books[4].getCheckedOutTo());
+
+
         displayMenu(input);
         int menuDecision = input.nextInt();
         input.nextLine();
 
         switch (menuDecision){
             case 1-> showAvailableBooks(books, input);
-            case 2-> checkOutBooks();
+            case 2-> checkedOutBooks(books);
             default -> System.out.println("Invalid Input!");
         }
 
@@ -63,17 +71,23 @@ public class App {
         }
 
         promptBookCheckOut(input, books);
-        String bookTitle = input.nextLine();
+        //String bookTitle = input.nextLine();
 
         //System.out.println(bookTitle);
     }
 
-    public static void checkOutBooks(){
-
+    public static void checkedOutBooks(Book[] books){
+        int i = 0;
+        for(Book book : books){
+            if(book.isCheckedOut()) {
+                System.out.println(book);
+                System.out.println(book.getCheckedOutTo());
+                i++;
+            }
+        }
     }
 
     public static void promptBookCheckOut(Scanner input, Book[] books){
-        Book book1 = new Book();
 
         System.out.print("""
                 --------------------------------
@@ -81,21 +95,23 @@ public class App {
                 EXIT to exit:\s""");
         String checkOutBook = input.nextLine();
         //input.nextLine();
-
+        int i = 0;
         if(checkOutBook.equalsIgnoreCase("exit")){
             System.out.println("Goodbye!");
         }else{
-            System.out.println("What is your name: ");
+            System.out.print("What is your name: ");
             String userName = input.nextLine();
+            input.nextLine();
             for (Book book : books){
                 if(book.getTitle().equalsIgnoreCase(checkOutBook)){
-                    book.setCheckedOut(book.isCheckedOut());
-                    book.setCheckedOutTo(userName);
+                    book.CheckOut(userName);
+                    System.out.println(book.isCheckedOut());
+                    System.out.println(book.getTitle());
                 }
             }
 
 
         }
-        //System.out.println(checkOutBook);
+//        System.out.println(checkOutBook);
     }
 }
