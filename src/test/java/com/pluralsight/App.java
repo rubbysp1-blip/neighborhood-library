@@ -31,12 +31,6 @@ public class App {
         books[18] = new Book(19, "9780000000019", "Vintage Cars of the World", false);
         books[19] = new Book(20, "9780000000020", "Supercars: Speed and Innovation", false);
 
-//        Book book = new Book();
-//        System.out.println(books[4].isCheckedOut());
-//        books[4].CheckOut("Ruby");
-////        System.out.println(books[4].isCheckedOut());
-////        books[4].CheckIn();
-//        System.out.println(books[4].getCheckedOutTo());
         int menuDecision = 0;
         while(menuDecision != 3) {
             displayMenu(input);
@@ -72,18 +66,14 @@ public class App {
         }
 
         promptBookCheckOut(input, books);
-        //String bookTitle = input.nextLine();
 
-        //System.out.println(bookTitle);
     }
 
     public static void checkedOutBooks(Book[] books, Scanner input){
-        //int i = 0;
         for(Book book : books){
             if(book.isCheckedOut()) {
                 System.out.println(book);
                 System.out.println(book.getCheckedOutTo());
-                //i++;
             }
         }
 
@@ -103,7 +93,7 @@ public class App {
                 Enter book title you want to check out or
                 EXIT to exit:\s""");
         String checkOutBook = input.nextLine();
-        //input.nextLine();
+
         int i = 0;
         if(checkOutBook.equalsIgnoreCase("exit")){
             System.out.println("Goodbye!");
@@ -118,7 +108,6 @@ public class App {
                 }
             }
         }
-//        System.out.println(checkOutBook);
     }
 
     public static void checkInBook(Scanner input, String returnBookOrExit, Book[] books){
@@ -129,7 +118,6 @@ public class App {
                 if(book.getId() == bookId){
                     book.CheckIn();
                     System.out.println(book);
-                    //displayMenu(input);
                 }
             }
         }
@@ -138,10 +126,5 @@ public class App {
             displayMenu(input);
             input.nextLine();
         }
-//        System.out.println("""
-//                C - to Check In a book
-//                X - to go back to the home screen:\s""");
-//        String returnBookOrExit = input.nextLine();
-        //input.nextLine();
     }
 }
