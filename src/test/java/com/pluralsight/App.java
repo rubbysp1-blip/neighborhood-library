@@ -45,7 +45,7 @@ public class App {
 
             switch (menuDecision) {
                 case 1 -> showAvailableBooks(books, input);
-                case 2 -> checkedOutBooks(books);
+                case 2 -> checkedOutBooks(books, input);
                 case 3 -> System.out.println("Goodbye!");
                 default -> System.out.println("Invalid Input!");
             }
@@ -77,7 +77,7 @@ public class App {
         //System.out.println(bookTitle);
     }
 
-    public static void checkedOutBooks(Book[] books){
+    public static void checkedOutBooks(Book[] books, Scanner input){
         //int i = 0;
         for(Book book : books){
             if(book.isCheckedOut()) {
@@ -86,6 +86,14 @@ public class App {
                 //i++;
             }
         }
+
+        System.out.print("""
+                C - to Check In a book
+                X - to go back to the home screen:\s""");
+        String returnBookOrExit = input.nextLine();
+        input.nextLine();
+
+        checkInBook(input, returnBookOrExit, books);
     }
 
     public static void promptBookCheckOut(Scanner input, Book[] books){
@@ -111,5 +119,29 @@ public class App {
             }
         }
 //        System.out.println(checkOutBook);
+    }
+
+    public static void checkInBook(Scanner input, String returnBookOrExit, Book[] books){
+        if(returnBookOrExit.equalsIgnoreCase("c")){
+            System.out.println("Enter ID of Book: ");
+            int bookId = input.nextInt();
+            for(Book book : books){
+                if(book.getId() == bookId){
+                    book.CheckIn();
+                    System.out.println(book);
+                    //displayMenu(input);
+                }
+            }
+        }
+
+        if (returnBookOrExit.equalsIgnoreCase("x")){
+            displayMenu(input);
+            input.nextLine();
+        }
+//        System.out.println("""
+//                C - to Check In a book
+//                X - to go back to the home screen:\s""");
+//        String returnBookOrExit = input.nextLine();
+        //input.nextLine();
     }
 }
